@@ -107,6 +107,40 @@
         .header-nav a:hover {
             color: var(--accent);
         }
+        /* === MATCH PRIVACY & TERMS NAV STYLE === */
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* spacing between items */
+}
+
+.header-nav a {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* emoji + text spacing */
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 2px 0;
+    transition: color 0.2s ease;
+}
+
+.header-nav a:hover {
+    color: var(--accent);
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: 0.25s ease;
+}
+
+.header-nav a:hover .nav-icon {
+    opacity: 1;
+    transform: translateY(-1px);
+}
         /* --- END NEW HEADER STYLES --- */
 
 
@@ -1094,12 +1128,23 @@ body {
         <span class="logo-text">WealthPath</span>
     </a>
     
-    <nav class="header-nav" id="desktopNav">
-        <a href="#about">About Us</a>
-        <a href="#pillars">Our Pillars</a>
-        <a href="#tools">Toolkit</a>
-        <a href="#founder">Founder</a>
-    </nav>
+  <nav class="header-nav" id="desktopNav">
+    <a href="#about">
+        <span class="nav-icon">🌟</span> About Us
+    </a>
+
+    <a href="#pillars">
+        <span class="nav-icon">🏛️</span> Our Pillars
+    </a>
+
+    <a href="#tools">
+        <span class="nav-icon">🧰</span> Toolkit
+    </a>
+
+    <a href="#founder">
+        <span class="nav-icon">👤</span> Founder
+    </a>
+</nav>
     <div id="menuBtn" class="menu-btn">
         <span></span>
         <span></span>
