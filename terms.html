@@ -256,6 +256,22 @@
 .header-nav a:hover {
     color: var(--accent, #3b82f6);
 }
+.header-nav a {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* spacing between emoji and text */
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: 0.25s ease;
+}
+
+.header-nav a:hover .nav-icon {
+    opacity: 1;
+    transform: translateY(-1px);
+}
 
 /* HAMBURGER */
 .menu-btn {
@@ -430,12 +446,23 @@
         <span class="logo-text">WealthPath</span>
     </a>
 
-    <nav class="header-nav" id="desktopNav">
-        <a href="index.html#about">About Us</a>
-        <a href="index.html#pillars">Our Pillars</a>
-        <a href="index.html#tools">Toolkit</a>
-        <a href="index.html#founder">Founder</a>
-    </nav>
+<nav class="header-nav" id="desktopNav">
+    <a href="https://mywealthpath.org">
+        <span class="nav-icon">🏠</span> Home
+    </a>
+
+    <a href="index.html#tools">
+        <span class="nav-icon">🧰</span> Toolkit
+    </a>
+
+    <a href="terms.html">
+        <span class="nav-icon">📄</span> Terms
+    </a>
+
+    <a href="privacy.html">
+        <span class="nav-icon">🔒</span> Privacy
+    </a>
+</nav>
     
     <div id="menuBtn" class="menu-btn">
         <span></span>
@@ -459,7 +486,37 @@
     </a>
     
       <div style="height: 8px;"></div>
-
+    
+      <a href="terms.html" class="menu-item">
+        <span class="item-icon">📄</span>
+        <span class="item-content">
+            <span class="item-title">Terms of Service</span>
+            <span class="item-subtext">Legal agreement between you and WealthPath.</span>
+        </span>
+    </a>
+    
+      
+    <a href="privacy.html" class="menu-item">
+        <span class="item-icon">🔒</span>
+        <span class="item-content">
+            <span class="item-title">Privacy Policy</span>
+            <span class="item-subtext">What data we collect and how we use it.</span>
+        </span>
+    </a>
+    
+    <div style="height: 8px;"></div>
+    
+      
+    <a href="https://explorer.mywealthpath.org" class="menu-item">
+        <span class="item-icon">🏠</span>
+        <span class="item-content">
+            <span class="item-title">Explorer Home</span>
+            <span class="item-subtext">See all investing categories in one place.</span>
+        </span>
+    </a>
+    
+    <div style="height: 8px;"></div>
+    
     <a href="index.html#about" class="menu-item">
         <span class="item-icon">🌟</span>
         <span class="item-content">
@@ -488,37 +545,7 @@
         </span>
     </a>
     
-    <div style="height: 25px;"></div>
-    
-    <a href="https://explorer.mywealthpath.org" class="menu-item">
-        <span class="item-icon">🏠</span>
-        <span class="item-content">
-            <span class="item-title">Explorer Home</span>
-            <span class="item-subtext">See all investing categories in one place.</span>
-        </span>
-    </a>
-    
-      <div style="height: 8px;"></div>
-    
-    <a href="privacy.html" class="menu-item">
-        <span class="item-icon">🔒</span>
-        <span class="item-content">
-            <span class="item-title">Privacy Policy</span>
-            <span class="item-subtext">What data we collect and how we use it.</span>
-        </span>
-    </a>
-    
-      <div style="height: 8px;"></div>
-    
-    <a href="terms.html" class="menu-item">
-        <span class="item-icon">📄</span>
-        <span class="item-content">
-            <span class="item-title">Terms of Service</span>
-            <span class="item-subtext">Legal agreement between you and WealthPath.</span>
-        </span>
-    </a>
-    
-      <div style="height: 8px;"></div>
+    <div style="height: 8px;"></div>
     
     <a href="mailto:info@mywealthpath.org" class="menu-item">
         <span class="item-icon">✉️</span>
