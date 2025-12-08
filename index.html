@@ -298,21 +298,6 @@
             display: none;
         }
 
-        /* Desktop Breakpoint: On larger screens (e.g., 900px and up) */
-        @media (min-width: 900px) {
-            /* Hide the complex mobile instructions and app links */
-            #mobileInstructionBlock {
-                display: none !important;
-            }
-            /* Show the simple desktop link */
-            #desktopSimpleLink {
-                display: block !important;
-                margin-top: 40px; /* Space above the button */
-            }
-        }
-
-        /* --- END MOBILE/DESKTOP SWITCH STYLES --- */
-
         /* New list spacing fix (already in place) */
         .instruction-list li {
             margin-bottom: 12px; 
@@ -1272,16 +1257,6 @@ body {
              <div class="cta-divider-container" style="padding: 20px 0;">
     <hr class="cta-divider">
 </div>
-            <div id="desktopSimpleLink">
-                 <a href="https://docs.google.com/document/d/1-xCGlcx5ap2YinQ21jWvljQ8uWdof6NqCzATqJzfcJ4/edit?usp=drivesdk" 
-                    target="_blank" 
-                    class="btn btn-glow"
-                    style="font-size: 1.1rem; padding: 14px 40px; margin-bottom: 20px;">
-                    View Course Document Now
-                </a>
-                <p style="font-size: 0.9rem; color: var(--muted); margin-top: 10px;">(Opens directly in your web browser)</p>
-            </div>
-
 
            <div id="mobileInstructionBlock" class="card" style="margin: 40px auto; max-width: 500px;">
             
