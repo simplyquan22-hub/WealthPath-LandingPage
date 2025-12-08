@@ -1118,6 +1118,81 @@ body {
     max-width: 210px;             /* More compact than before */
     margin: 25px auto 0;          /* Cleaner spacing under button */
 }
+/* Center the rating under the Review section */
+.rating-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 18px;
+}
+/* Center container */
+.rating-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+/* Hide radio inputs */
+.rating:not(:checked) > input {
+  position: absolute;
+  appearance: none;
+}
+
+/* Star base style */
+.rating:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 38px;
+  color: #444;
+  transition: 0.25s ease;
+  text-shadow:
+    0 0 6px rgba(0,0,0,0.4);
+}
+
+/* Star character */
+.rating:not(:checked) > label:before {
+  content: '★';
+}
+
+/* Hover glow */
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffb52e;
+  text-shadow:
+    0 0 10px rgba(255,181,46,0.8),
+    0 0 20px rgba(255,181,46,0.6),
+    0 0 30px rgba(255,181,46,0.4);
+}
+
+/* Selected glow */
+.rating > input:checked ~ label {
+  color: #ffa723;
+  text-shadow:
+    0 0 14px rgba(255,167,35,0.9),
+    0 0 28px rgba(255,167,35,0.6),
+    0 0 40px rgba(255,167,35,0.4);
+}
+
+/* Hovering AFTER selecting */
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffb52e;
+  text-shadow:
+    0 0 18px rgba(255,181,46,1),
+    0 0 30px rgba(255,181,46,0.8),
+    0 0 45px rgba(255,181,46,0.6);
+}
+.rating input[type="radio"] {
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    pointer-events: none !important;
+}
     </style>
 </head>
 <body id="top">
@@ -1664,9 +1739,26 @@ body {
             <h2>Help Us Improve WealthPath</h2>
             <p>If you've started your free course, please take a moment to share your honest feedback. Your review is vital to helping us empower more learners!</p>
             
+                        <!-- Star Rating (Centered) -->
+<div class="rating-container">
+  <div class="rating">
+    <input value="5" name="rate" id="star5" type="radio">
+    <label title="text" for="star5"></label>
+    <input value="4" name="rate" id="star4" type="radio">
+    <label title="text" for="star4"></label>
+    <input value="3" name="rate" id="star3" type="radio" checked>
+    <label title="text" for="star3"></label>
+    <input value="2" name="rate" id="star2" type="radio">
+    <label title="text" for="star2"></label>
+    <input value="1" name="rate" id="star1" type="radio">
+    <label title="text" for="star1"></label>
+  </div>
+</div>
+            
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8cXejgjVl5mL7W6QUi-8_1pi-lTuUuyw1QffKaC08yHTjjw/viewform?usp=sharing" target="_blank" class="btn btn-glow review-btn">
                 Leave a Review
             </a>
+            
         </div>
     </section>
 
