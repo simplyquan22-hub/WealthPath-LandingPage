@@ -1196,6 +1196,102 @@ body {
 .builder-spacing p {
     margin-top: 18px !important;
 }
+/* ===========================
+   TV — Purple Glow + VHS Flicker
+=========================== */
+
+.tv-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tv-screen {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: black;
+  border: 10px solid #333;
+  border-radius: 10px;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 50px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.static {
+  position: absolute;
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    #000, #000 1px,
+    #111 1px,
+    #fff 1px,
+    #333 2px
+  );
+  animation: flicker 0.1s steps(20) infinite;
+  z-index: 1;
+}
+
+.tv-message {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: #c084fc; /* PURPLE */
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  z-index: 2;
+
+  /* Glow */
+  text-shadow:
+    0 0 8px rgba(192,132,252,0.9),
+    0 0 16px rgba(192,132,252,0.6),
+    0 0 28px rgba(192,132,252,0.4);
+}
+.tv-stand {
+  width: 150px;
+  height: 10px;
+  background: #333;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.7);
+}
+.tv-message {
+  transition: opacity 0.35s ease;
+  opacity: 1;
+}
+
+.tv-message.fade-out {
+  opacity: 0;
+}
+.section-divider {
+    margin: 50px auto;
+    width: 85%;
+    max-width: 900px;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    border-radius: 2px;
+
+    /* subtle WealthPath glow */
+    box-shadow:
+        0 0 8px rgba(192,132,252,0.25),
+        0 0 16px rgba(192,132,252,0.15);
+}
+.tv-divider {
+    margin: 10px auto; /* adjust this to move it up/down */
+    width: 85%;
+    max-width: 900px;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    border-radius: 2px;
+    box-shadow:
+        0 0 8px rgba(192,132,252,0.25),
+        0 0 16px rgba(192,132,252,0.15);
+}
+.tv-divider {
+    margin-top: -20px !important;
+}
     </style>
 </head>
 <body id="top">
@@ -1430,7 +1526,7 @@ body {
 </a>
 
 <p class="under-btn-message">
-    Tap me 👆🏽 when you're ready — this journey 👣 is yours, and I’m proud of you for being here.
+    Tap me 👆🏽 when you're ready — this journey is yours, and I’m proud of you for being here.
 </p>
 
 </div>
@@ -1497,12 +1593,18 @@ body {
                 <div class="vision-item">
                     <h3>🔮 Our Vision</h3>
                     <p>We see a future where financial freedom is accessible to everyone. WealthPath blends education and inspiration to help you grow your wealth — not by chasing trends, but by mastering timeless principles that truly work.</p>
-                </div>
-            </div>
+                     <div class="tv-container" style="margin-top: 45px;">
+        <div class="tv-screen">
+            <div class="static"></div>
+            <div class="tv-message">A JOURNEY UNIQUELY YOURS</div>
+        </div>
+        <div class="tv-stand"></div>
+        </div>
+     </div>
        
-<hr class="section-divider fade-in-element">
+    <hr class="tv-divider fade-in-element">
 
-       <h2 class="principles-heading fade-in-element" style="margin-bottom: 40px;">
+       <h2 class="principles-heading fade-in-element" style="margin-top: 25px; margin-bottom: 20px;">
     Our Core Pillars
 </h2>
         
@@ -1537,7 +1639,7 @@ body {
         </div>
     </section>
     
-    <hr class="section-divider fade-in-element">
+    <hr class="section-divider fade-in-element" style="margin-top: 80px;">
 
     <section class="tools-section" id="tools">
         <h2 class="principles-heading fade-in-element">Our Learning Toolkit</h2>
@@ -2134,6 +2236,37 @@ window.addEventListener("scroll", () => {
         launchConfetti();
     }
 });
+/* ===========================
+   TV — Message Rotator (Tap)
+=========================== */
+const tvMessage = document.querySelector(".tv-message");
+
+const tvMessages = [
+    "THE FUTURE STARTS WITH YOU",
+    "WE BELIEVE IN YOU",
+    "KEEP SCROLLING 😏."
+];
+let tvIndex = 0;
+
+function updateTVMessage() {
+    tvMessage.textContent = tvMessages[tvIndex];
+}
+
+function nextTVMessage() {
+  tvMessage.classList.add("fade-out");
+
+  setTimeout(() => {
+    tvIndex = (tvIndex + 1) % tvMessages.length;
+    tvMessage.textContent = tvMessages[tvIndex];
+    tvMessage.classList.remove("fade-out");
+  }, 350);
+}
+
+// Initialize
+updateTVMessage();
+
+// Tap events
+tvMessage.addEventListener("pointerup", nextTVMessage);
 </script>
 
 </body>
