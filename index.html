@@ -1419,6 +1419,66 @@ text-shadow:
   80%  { transform: translateX(2px); }
   100% { transform: translateX(0); }
 }
+/* ==========================================================
+   FORCE DESKTOP TO LOOK EXACTLY LIKE MOBILE (ONE COLUMN)
+   ========================================================== */
+
+@media (min-width: 901px) {
+    
+    /* Make ALL card grids behave like a vertical stack */
+    .cards {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 45px !important;
+        width: 100% !important;
+    }
+
+    /* Make individual cards full width (like mobile) */
+    .cards .card {
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Mission/Vision becomes stacked vertically */
+    .mission-vision-flex {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 40px !important;
+    }
+
+    .mission-item,
+    .vision-item {
+        max-width: 650px !important;
+        width: 100% !important;
+    }
+
+    /* Center TV container */
+    .tv-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Ensure ALL section text stays centered and not stretched */
+    section, 
+    section p, 
+    .founder-card, 
+    .founder-quote {
+        max-width: 900px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* Force Toolkit buttons + Founder card to behave like mobile */
+    .toolkit-card,
+    .founder-card {
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+    }
+}
     </style>
 </head>
 <body id="top">
