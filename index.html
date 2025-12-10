@@ -319,9 +319,16 @@
         .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 45px; max-width: 1200px; margin: 0 auto; }
         .founder-section { padding: 60px 20px 80px; text-align: center; max-width: 1200px; margin: 0 auto; }
         .founder-section h2 { font-size: 2.3rem; margin-bottom: 40px; }
-        /* Fix anchor scroll jump for Our Pillars */
+   /* Fix anchor scroll jump for Our Pillars */
 #parallaxCardsContainer {
     scroll-margin-top: 200px; /* adjust until perfect */
+}
+
+/* NEW — Apply same scroll offset to all main sections */
+#about,
+#tools,
+#founder {
+    scroll-margin-top: 100px;
 }
         @keyframes electric-pulse {
             0% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
