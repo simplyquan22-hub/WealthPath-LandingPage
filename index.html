@@ -1211,7 +1211,17 @@ body {
   position: relative;
   width: 300px;
   height: 200px;
-  background: black;
+  background: linear-gradient(
+    to right,
+    #cfcfcf 0%,   #cfcfcf 14.28%,
+    #f2ea00 14.28%, #f2ea00 28.56%,
+    #00ffff 28.56%, #00ffff 42.84%,
+    #00ff00 42.84%, #00ff00 57.12%,
+    #ff00ff 57.12%, #ff00ff 71.40%,
+    #ff0000 71.40%, #ff0000 85.68%,
+    #0000ff 85.68%, #0000ff 100%
+  );
+
   border: 10px solid #000;
   border-radius: 10px;
   box-shadow:
@@ -1219,36 +1229,72 @@ body {
     inset 0 0 50px rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
-
+/* ====== CRT STATIC (scanlines) ====== */
 .static {
   position: absolute;
-  width: 100%; height: 100%;
+  width: 100%;
+  height: 100%;
   background: repeating-linear-gradient(
-    0deg,
-    #000, #000 1px,
-    #111 1px,
-    #fff 1px,
-    #333 2px
+    to bottom,
+    rgba(255,255,255,0.05) 0px,
+    rgba(255,255,255,0.05) 1px,
+    rgba(0,0,0,0.15) 1px,
+    rgba(0,0,0,0.15) 2px
   );
-  animation: flicker 0.1s steps(20) infinite;
+  mix-blend-mode: multiply;
+  animation: flicker 0.07s steps(2, end) infinite;
   z-index: 1;
 }
 
+/* Flicker animation actually used */
+@keyframes flicker {
+  0% { opacity: 0.9; }
+  50% { opacity: 0.75; }
+  100% { opacity: 0.9; }
+}
+
+/* ====== HORIZONTAL ROLLING CRT BAR ====== */
+.scanline-roll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 22%; /* looks best over test bars */
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.05),
+    rgba(0,0,0,0.12)
+  );
+  pointer-events: none;
+  animation: horizontalRoll 2.2s linear infinite;
+  mix-blend-mode: soft-light;
+  z-index: 3; /* Important: ABOVE tv-message */
+}
+
+/* Rolling bar animation */
+@keyframes horizontalRoll {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
 .tv-message {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  color: #c084fc; /* PURPLE */
+  color: #ffffff;
+  background: rgba(0,0,0,0.38);   
+  padding: 4px 12px;
+  border-radius: 6px;
+
+text-shadow:
+    0 0 3px rgba(0,0,0,1),       
+    0 0 8px rgba(0,0,0,0.9),   
+    0 0 14px rgba(0,0,0,0.75),   
+    0 0 4px rgba(255,255,255,0.75); 
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 1.5px;
   z-index: 2;
-
-  /* Glow */
-  text-shadow:
-    0 0 8px rgba(192,132,252,0.9),
-    0 0 16px rgba(192,132,252,0.6),
-    0 0 28px rgba(192,132,252,0.4);
 }
 .tv-stand {
   width: 160px;
@@ -1326,7 +1372,7 @@ body {
   position: absolute;
   width: 4px;
   height: 70px;
-  background: #555;
+  background: #000;
   border-radius: 4px;
   top: -60px;           /* HEIGHT above the TV */
   box-shadow:
@@ -1342,6 +1388,36 @@ body {
 .antenna-right {
   left: calc(50% + 56px);
   transform: rotate(20deg);
+}
+/* ===========================
+   TV — FLOATING ANIMATION
+=========================== */
+
+.tv-container {
+    animation: tvFloat 6s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes tvFloat {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+/* ===========================
+   TV — Micro Shake on Blocked Tap
+=========================== */
+
+.tv-screen.shake {
+  animation: blockedShake 0.25s ease;
+}
+
+@keyframes blockedShake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-3px); }
+  40%  { transform: translateX(3px); }
+  60%  { transform: translateX(-2px); }
+  80%  { transform: translateX(2px); }
+  100% { transform: translateX(0); }
 }
     </style>
 </head>
@@ -1652,6 +1728,7 @@ body {
                     
                      <div class="tv-screen">
                      <div class="static"></div>
+                     <div class="scanline-roll"></div>
                      <div class="tv-message">A JOURNEY UNIQUELY YOURS</div>
                     </div>
                     <div class="tv-stand"></div>
@@ -2293,61 +2370,115 @@ window.addEventListener("scroll", () => {
     }
 });
 /* ===========================
-   TV — Message Rotator (Tap)
+   TV — Retro Dialogue System
 =========================== */
+
 const tvMessage = document.querySelector(".tv-message");
+const tvScreen  = document.querySelector(".tv-screen");
 
 const tvMessages = [
     "TAP ME…",
-    "HELLO 👋🏽… MY NAME IS RETRO",
-    "I HAVE A MESSAGE FOR YOU",
+    "HEY IM RETRO 👋🏽",
+    "YOUR FELLOW COMPANION.",
+    "I HAVE A MESSAGE FOR YOU…",
     "YOU'RE WALKING YOUR OWN PATH",
-    "A JOURNEY THATS UNIQUELY YOURS",
+    "A JOURNEY THAT'S UNIQUELY YOURS 😏",
     "THE FUTURE STARTS WITH YOU",
-    "AND THE CHOICES YOU MAKE",
-    "SHAPE THAT PATH",
+    "AND THE CHOICES YOU MAKE TODAY.",
     "WEALTHPATH BELIEVES IN YOU…",
-    "AND I RETRO BELIEVE IN YOU TOO.",
+    "AND I, RETRO, DO TOO 💙.",
     "GO GET THE WEALTHPATH COURSE",
-    "YOU'LL LEARN SOMETHING NEW 😊",
-    "KEEP SCROLLING… 😏.",
+    "TO START YOUR JOURNEY",
+    "YOU'LL LEARN SOMETHING NEW",
+    "BUT… KEEP SCROLLING, OR KEEP TAPPING ☺️.",
+    "ENTERING… REBOOT… 🤖",
+    "REBOOT…🤖",
     "…OH. YOU TAPPED AGAIN?",
-    "CURIOUS ONE AREN'T YOU?",
-    "YOU KNOW… I KNEW YOU WOULD KEEP TAPING",
-    "MOST PEOPLE STOPPED TAPPING BY NOW",
-    "BUT NOT YOU.",
-    "CURIOSITY BRINGS YOU PLACES",
-    "DON'T STOP BEING CURIOUS 😏",
-    "OK… MORE MESSAGE",
-    "BUILDING WEALTH IS NOT A SPRINT",
-    "ITS A MARATHON",
-    "IT'LL TEST YOU…",
-    "BUT ONLY A FEW ACTUALLY COMMIT TO THE PROCESS.",
-    "ALRIGHT… SERIOUSLY… KEEP SCROLLING 😂",
-    "I’LL JUST… FLOAT HERE… EXISTING.",
-    "SEE YA💙"
+    "CURIOUS ONE AREN'T YOU? 😂",
+    "I FIGURED 😂😂",
+    "TAP ME 2X'S FOR A SURPRISE 👀",
+    "CONGRATS 🎊 ,YOUR A KNOWLEDGE SEEKER.",
+    "BUILDING WEALTH, IS A LONG PROCESS",
+    "ONLY THE BATTLE TESTED CAN ENDURE.",
+    "BUT… YOU'RE A FIGHTER 💪🏽",
+    "KEEP LEARNING & KEEP MOVING FORWARD.",
+    "THE FUTURE IS YOURS",
+    "FARWELL FRIEND 💙👋🏽"
 ];
-let tvIndex = 0;
 
-function updateTVMessage() {
-    tvMessage.textContent = tvMessages[tvIndex];
+// index of current message
+let tvIndex = 0;
+tvMessage.textContent = tvMessages[tvIndex];
+
+// double-tap detection
+let lastTap = 0;
+
+// allow surprise only once
+let surpriseTriggered = false;
+
+/* ===========================
+   Surprise Effect
+=========================== */
+function triggerSurprise() {
+
+  // Purple flash
+  tvScreen.style.boxShadow =
+    "0 0 45px rgba(192,132,252,1), 0 0 85px rgba(192,132,252,0.8)";
+
+  setTimeout(() => {
+    tvScreen.style.boxShadow =
+      "0 0 20px rgba(0,0,0,0.8), inset 0 0 50px rgba(255,255,255,0.2)";
+  }, 300);
+
+  // Confetti burst (requires canvas-confetti)
+  confetti({
+    particleCount: 40,
+    spread: 50,
+    startVelocity: 30,
+    gravity: 0.7,
+    colors: ["#c084fc", "#3b82f6", "#a78bfa"],
+    origin: { x: 0.5, y: 0.55 }
+  });
 }
 
-function nextTVMessage() {
+/* ===========================
+   Handle Tap
+=========================== */
+tvMessage.addEventListener("pointerup", () => {
+
+  const now = Date.now();
+  const isDoubleTap = now - lastTap < 300;
+  lastTap = now;
+
+  // 1️⃣ SPECIAL DOUBLE-TAP ONLY ON INDEX 17
+  if (tvIndex === 19 && isDoubleTap && !surpriseTriggered) {
+      surpriseTriggered = true;
+      triggerSurprise();
+      return; // STOP — do not advance
+  }
+
+ // 2️⃣ BLOCK ALL DOUBLE TAPS EVERYWHERE ELSE (shake TV)
+if (isDoubleTap) {
+    tvScreen.classList.add("shake");
+
+    // remove class after animation finishes
+    setTimeout(() => {
+        tvScreen.classList.remove("shake");
+    }, 250);
+
+    return; 
+}
+
+  // 3️⃣ NORMAL SINGLE TAP → ADVANCE ONE MESSAGE
   tvMessage.classList.add("fade-out");
 
   setTimeout(() => {
-    tvIndex = (tvIndex + 1) % tvMessages.length;
-    tvMessage.textContent = tvMessages[tvIndex];
-    tvMessage.classList.remove("fade-out");
+      tvIndex = (tvIndex + 1) % tvMessages.length;
+      tvMessage.textContent = tvMessages[tvIndex];
+      tvMessage.classList.remove("fade-out");
   }, 350);
-}
 
-// Initialize
-updateTVMessage();
-
-// Tap events
-tvMessage.addEventListener("pointerup", nextTVMessage);
+});
 </script>
 
 </body>
