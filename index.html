@@ -2545,9 +2545,8 @@ const tvMessages = [
     "BUT… KEEP SCROLLING, OR KEEP TAPPING ☺️.",
     "ENTERING… REBOOT… 🤖",
     "REBOOT…🤖",
-    "…OH. YOU KEPT TAPPING?",
+    "…OH. YOU TAPPED AGAIN?",
     "CURIOUS ONE AREN'T YOU? 😂",
-    "I FIGURED 😂😂",
     "TAP ME 2X'S FOR A SURPRISE 👀",
     "CONGRATS 🎊 ,YOUR A KNOWLEDGE SEEKER.",
     "BUILDING WEALTH, IS A LONG PROCESS",
@@ -2602,8 +2601,8 @@ tvMessage.addEventListener("pointerup", () => {
   const isDoubleTap = now - lastTap < 300;
   lastTap = now;
 
-  // 1️⃣ SPECIAL DOUBLE-TAP ONLY ON INDEX 17
-  if (tvIndex === 20 && isDoubleTap && !surpriseTriggered) {
+  // 1️⃣ SPECIAL DOUBLE-TAP ONLY ON INDEX 19
+  if (tvIndex === 19 && isDoubleTap && !surpriseTriggered) {
       surpriseTriggered = true;
       triggerSurprise();
       return; // STOP — do not advance
