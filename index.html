@@ -1479,6 +1479,88 @@ text-shadow:
         margin: 0 auto !important;
     }
 }
+/* ==========================================================
+   WEALTHPATH — NEW COMPACT RIGHT-SIDE MENU SYSTEM
+   Applies ONLY to the Landing Page (your request)
+   ========================================================== */
+
+/* --- Make the menu panel narrower + cleaner --- */
+.mobile-menu {
+    width: 245px !important; /* smaller panel */
+    padding: 70px 18px !important; /* tighter padding */
+    background: rgba(11,14,18,0.92);
+}
+
+/* --- Compact menu items --- */
+.mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 14px !important; /* smaller height */
+    margin-bottom: 10px !important; /* tighter spacing */
+
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.05);
+
+    font-size: 0.95rem !important; /* smaller text */
+    border-radius: 10px;
+
+    transition: background 0.2s ease, border 0.2s ease, transform 0.2s ease;
+}
+
+/* --- ICON size smaller --- */
+.item-icon {
+    font-size: 1.25rem !important; /* smaller icons */
+}
+
+/* --- Title + Subtitle text size fixed --- */
+.item-title {
+    font-size: 0.95rem !important;
+}
+.item-subtext {
+    font-size: 0.78rem !important;
+}
+
+/* --- BLUE hover + tap feedback --- */
+.mobile-menu a:hover,
+.mobile-menu a:active {
+    background: rgba(59,130,246,0.16) !important;
+    border: 1px solid rgba(59,130,246,0.55) !important;
+    transform: translateX(4px) !important;
+    box-shadow: 0 0 12px rgba(59,130,246,0.35) !important;
+}
+
+/* --- MENU CLOSE button smaller + cleaner --- */
+.menu-close {
+    font-size: 1.55rem !important;
+    top: 14px !important;
+    right: 14px !important;
+}
+
+/* --- MENU TITLE spacing reduced --- */
+.menu-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 15px !important;
+}
+
+.menu-title-underline {
+    margin-bottom: 20px !important;
+    width: 55% !important;
+}
+
+/* --- Scroll optimization --- */
+.mobile-menu {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* --- Prevent vertical overflow issues --- */
+@media (max-height: 700px) {
+    .mobile-menu {
+        padding-top: 55px !important;
+    }
+}
     </style>
 </head>
 <body id="top">
