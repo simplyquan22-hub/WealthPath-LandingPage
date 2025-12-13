@@ -13,7 +13,7 @@
             --bg: #0b0e12;
             --text: #e9eef6;
             --muted: #9aa4b2;
-            --accent: #3b82f6;
+            --accent: #7c3aed;
             --border: rgba(255, 255, 255, 0.12);
         }
 
@@ -510,6 +510,35 @@
 @media (max-height: 700px) {
     .mobile-menu {
         padding-top: 55px !important;
+    }
+}
+.cta-divider {
+    border: none;
+    height: 2px;
+    width: 35%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(124,58,237,0.9),
+        transparent
+    );
+    border-radius: 4px;
+    opacity: 0.85;
+
+    animation: divider-glow 3.5s ease-in-out infinite;
+}
+
+@keyframes divider-glow {
+    0% {
+        background-position: 0% 50%;
+        opacity: 0.45;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        background-position: 100% 50%;
+        opacity: 0.45;
     }
 }
     </style>
