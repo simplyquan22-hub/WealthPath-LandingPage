@@ -248,41 +248,6 @@
   100% { left: 120%; }
 }
 
-        /* --- BUTTON & PULSING ANIMATION --- */
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-            }
-        }
-
-        .btn {
-            background: var(--accent);
-            color: #fff;
-            padding: 14px 34px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            text-decoration: none; 
-            cursor: pointer; 
-        }
-
-        .btn-glow {
-            position: relative;
-            display: inline-block; 
-            animation: pulse 2s infinite cubic-bezier(0.66, 0.0, 0.0, 1);
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(59,130,246,0.5);
-        }
         /* Remove white blur from the accent text */
 .shiny-text {
     text-shadow: none !important;
@@ -346,50 +311,44 @@
    WealthPath Clean Blue Neon-Core Glow
    (Balanced + Founder Included)
    ======================================= */
-
 .card,
 .founder-card {
     position: relative !important;
 
-    /* Soft inner glow (very toned down) */
     background: radial-gradient(
         circle at center,
-        rgba(59,130,246,0.08),   /* subtle blue core */
-        rgba(11,14,18,0.96) 70%  /* dark outer ring */
+        rgba(124,58,237,0.10),
+        rgba(11,14,18,0.96) 70%
     ) !important;
 
     border-radius: 22px !important;
 
-    /* Blue border glow (reduced intensity) */
-    border: 1px solid rgba(59,130,246,0.28) !important;
+    border: 1px solid rgba(124,58,237,0.34) !important;
 
-    /* Clean blue halo + soft inner glow */
-   /* Clean blue halo + stronger but balanced glow */
-box-shadow:
-    0 0 18px rgba(59,130,246,0.32),   /* outer halo (stronger) */
-    0 0 38px rgba(59,130,246,0.20),   /* big halo more visible */
-    inset 0 0 14px rgba(59,130,246,0.20); /* inner glow slightly stronger */
-    animation: bluePulse 7s ease-in-out infinite alternate !important;
+    box-shadow:
+        0 0 22px rgba(124,58,237,0.38),
+        0 0 44px rgba(124,58,237,0.24),
+        inset 0 0 16px rgba(124,58,237,0.24);
+
+    animation: purplePulse 7s ease-in-out infinite alternate !important;
     backdrop-filter: blur(12px) !important;
 }
 
-/* Smooth, subtle pulse with ONLY BLUE */
-@keyframes bluePulse {
+@keyframes purplePulse {
     from {
         box-shadow:
-            0 0 10px rgba(59,130,246,0.18),
-            0 0 20px rgba(59,130,246,0.10),
-            inset 0 0 8px rgba(59,130,246,0.12);
+            0 0 12px rgba(124,58,237,0.20),
+            0 0 24px rgba(124,58,237,0.12),
+            inset 0 0 9px rgba(124,58,237,0.14);
     }
     to {
         box-shadow:
-            0 0 18px rgba(59,130,246,0.28),
-            0 0 32px rgba(59,130,246,0.18),
-            inset 0 0 12px rgba(59,130,246,0.18);
+            0 0 22px rgba(124,58,237,0.36),
+            0 0 44px rgba(124,58,237,0.26),
+            inset 0 0 16px rgba(124,58,237,0.22);
     }
 }
 
-/* Blue corner glow accents (subtle) */
 .card::after,
 .founder-card::after {
     content: "";
@@ -401,16 +360,16 @@ box-shadow:
     background:
         radial-gradient(
             circle at top left,
-            rgba(59,130,246,0.14),
+            rgba(124,58,237,0.18),
             transparent 65%
         ),
         radial-gradient(
             circle at bottom right,
-            rgba(59,130,246,0.14),
+            rgba(124,58,237,0.18),
             transparent 65%
         );
 
-    opacity: 0.18;
+    opacity: 0.22;
 }
         .card::before {
             content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
